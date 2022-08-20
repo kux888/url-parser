@@ -1,4 +1,4 @@
-解析网页url参数的Chrome插件。
+解析网页url参数的Chrome插件
 
 ## Install
 
