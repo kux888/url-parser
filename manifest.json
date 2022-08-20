@@ -1,0 +1,11 @@
+{
+    "name": "URL Parser",
+    "version": "1.0",
+    "manifest_version": 3,
+    "description": "Parse Your URL",
+    "action": {
+        "default_icon": "image/logo.png",
+        "default_popup": "popup.html"
+    },
+    "permissions": ["tabs"]
+}
