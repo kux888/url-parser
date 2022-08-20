@@ -5,8 +5,13 @@ const copyParamsArray = document.getElementById('copy-params-array');
 const copySearch = document.getElementById('copy-search');
 const baseInfo = document.getElementById('base-info');
 const paramsInfo = document.getElementById('params-info');
+const customBtn = document.getElementById('customBtn');
+const customUrlView = document.getElementById('custom-url-view');
+const urlTextarea = document.getElementById('custom-url-textarea');
+const parseCustomBtn = document.getElementById('parse-custom-btn');
 
 const noData = '<i class="no-data">void</i>';
+const noDataAll = '<i class="no-data all">No Data</i>';
 const defaultPort = {
     'http:': '80',
     'https:': '443',
@@ -15,6 +20,8 @@ const defaultPort = {
 const baseKey = ['protocol', 'hostname', 'port', 'pathname', 'origin', 'hash'];
 let timer = null;
 let valDoms = null;
+let currentTabUrl = '';
+let customUrl = '';
 
 const itemCopy = dom => copy(dom.currentTarget.textContent);
 
@@ -84,11 +91,42 @@ const parseUrl = url => {
     copyParamsArray.onclick = () => copy(params);
 };
 
-resetPanel = () => {
-    
-}
+
+const resetPanel = () => {
+    copyUrl.onclick = null;
+    copyParams.onclick = null;
+    copySearch.onclick = null;
+    copyParamsArray.onclick = null;
+    valDoms.forEach(ele => ele.onclick = null);
+    paramsInfo.innerHTML = noDataAll;
+    baseInfo.innerHTML = noDataAll;
+};
+
+customBtn.onclick = e => {
+    resetPanel();
+    if(e.target.checked) {
+        customUrlView.classList.add('block');
+        if(customUrl) {
+            urlTextarea.value = customUrl;
+            parseUrl(customUrl);
+        }
+    } else {
+        customUrlView.classList.remove('block');
+        parseUrl(currentTabUrl);
+    }
+};
+
+parseCustomBtn.onclick = () => {
+    const _customUrl = urlTextarea.value;
+    if(_customUrl) {
+        resetPanel();
+        customUrl = _customUrl;
+        parseUrl(_customUrl);
+    };
+};
 
 chrome.tabs.query({ active: true, lastFocusedWindow: true }, tabs => {
     let tab = tabs[0];
+    currentTabUrl = tab.url;
     parseUrl(tab.url);
 });

@@ -11,16 +11,28 @@
 
 <body>
     <div class="header"></div>
-    <div id="copy-notice" class="copy-notice">copied!</div>
-    <div class="warper">
-        <div class="info-title">URL Base Info</div>
-        <ul class="base-info info-container" id="base-info">
-            <i class="no-data all">No Data</i>
-        </ul>
-        <div class="info-title">Param Item</div>
-        <ul class="params-info info-container" id="params-info">
-            <i class="no-data all">No Data</i>
-        </ul>
+    <div class="container">
+        <div class="custom-warper">
+            <a class="customBtn" title="custom mode">
+                <input type="checkbox" value="None" id="customBtn" name="check" />
+                <label class="custom-btn-label" for="customBtn"></label>
+            </a>
+            <div class="custom-url-view" id="custom-url-view">
+                <textarea id="custom-url-textarea" rows="4" cols="auto" placeholder="input your custom url"></textarea>
+                <div id="parse-custom-btn" class="button">Parse</div>
+            </div>
+        </div>
+        <div id="copy-notice" class="copy-notice">copied!</div>
+        <div class="warper">
+            <div class="info-title">URL Base Info</div>
+            <ul class="base-info info-container" id="base-info">
+                <i class="no-data all">No Data</i>
+            </ul>
+            <div class="info-title">Param Item</div>
+            <ul class="params-info info-container" id="params-info">
+                <i class="no-data all">No Data</i>
+            </ul>
+        </div>
     </div>
     <div class="footer">
         <div class="footer-btn" id="copy-url">Url</div>
