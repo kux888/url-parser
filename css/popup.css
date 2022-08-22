@@ -93,6 +93,7 @@ input[type=checkbox]:checked + label:after {
     justify-content: space-around;
     align-items: flex-start;
     display: none;
+    position: relative;
 }
 .custom-url-view.block {
     display: flex;
@@ -122,6 +123,23 @@ input[type=checkbox]:checked + label:after {
     font-size: 16px;
     font-weight: 500;
     user-select: none;
+}
+.custom-url-view .error-url-notice {
+    position: absolute;
+    bottom: 24px;
+    width: 100%;
+    text-align: left;
+    padding-left: 16px;
+    height: 16px;
+    line-height: 16px;
+    font-size: 12px;
+    color: red;
+    z-index: -1;
+    transition: bottom .3s ease-in-out;
+}
+
+.custom-url-view .error-url-notice.error-show {
+    bottom: 4px;
 }
 
 .item-container {
