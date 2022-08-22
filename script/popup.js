@@ -9,6 +9,9 @@ const customBtn = document.getElementById('customBtn');
 const customUrlView = document.getElementById('custom-url-view');
 const urlTextarea = document.getElementById('custom-url-textarea');
 const parseCustomBtn = document.getElementById('parse-custom-btn');
+const errorUrlNotice = document.getElementById('error-url-notice');
+
+const urlRule = /(ht|f)tp(s?)\:\/\/[0-9a-zA-Z]([-.\w]*[0-9a-zA-Z])*(:(0-9)*)*(\/?)([a-zA-Z0-9\-\.\?\,\'\/\\\+&amp;%\$#_]*)?/;
 
 const noData = '<i class="no-data">void</i>';
 const noDataAll = '<i class="no-data all">No Data</i>';
@@ -82,7 +85,7 @@ const parseUrl = url => {
     }, '')
     paramsInfoStr && (paramsInfo.innerHTML = paramsInfoStr);
 
-    valDoms = Array.from(document.getElementsByClassName('item-value')).filter(e => !Array.from(e.classList).includes('void'));
+    valDoms = Array.from(document.getElementsByClassName('item-value')).filter(e => !e.classList.contains('void'));
     valDoms.forEach(ele => ele.onclick = itemCopy);
 
     copyUrl.onclick = () => copy(newUrl.href);
@@ -102,13 +105,26 @@ const resetPanel = () => {
     baseInfo.innerHTML = noDataAll;
 };
 
+const onParseUrl = () => {
+    const _customUrl = urlTextarea.value;
+    if(_customUrl) {
+        resetPanel();
+        customUrl = _customUrl;
+        if(urlRule.test(_customUrl)) {
+            parseUrl(_customUrl);
+        } else {
+            errorUrlNotice.classList.add('error-show');
+        }
+    };
+}
+
 customBtn.onclick = e => {
     resetPanel();
     if(e.target.checked) {
         customUrlView.classList.add('block');
         if(customUrl) {
             urlTextarea.value = customUrl;
-            parseUrl(customUrl);
+            onParseUrl();
         }
     } else {
         customUrlView.classList.remove('block');
@@ -116,14 +132,10 @@ customBtn.onclick = e => {
     }
 };
 
-parseCustomBtn.onclick = () => {
-    const _customUrl = urlTextarea.value;
-    if(_customUrl) {
-        resetPanel();
-        customUrl = _customUrl;
-        parseUrl(_customUrl);
-    };
-};
+parseCustomBtn.onclick = onParseUrl;
+
+urlTextarea.onfocus = () =>
+    errorUrlNotice.classList.contains('error-show') && errorUrlNotice.classList.remove('error-show');
 
 chrome.tabs.query({ active: true, lastFocusedWindow: true }, tabs => {
     let tab = tabs[0];
