@@ -53,6 +53,9 @@ const parseUrl = url => {
         let classStr = '';
         if(!val && next === 'port') {
             val = defaultPort[newUrl.protocol];
+        };
+        if(val && next === 'pathname') {
+            val = decodeURIComponent(val);
         }
         if (!val) {
             val = noData;
