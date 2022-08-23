@@ -33,6 +33,7 @@ body {
     background-position: center;
     background-size: 188px 188px;
     background-repeat: no-repeat;
+    z-index: 1;
 }
 .container {
     padding-top: 74px;
@@ -51,6 +52,7 @@ body {
     background: linear-gradient(top, #fcfff4 0%, #dfe5d7 40%, #b3bead 100%);
     border-radius: 0 14px 14px 0;
     box-shadow: inset 0px 1px 1px white, 0px 1px 3px rgba(0,0,0,0.5);
+    z-index: 2;
 }
 /* .customBtn::hover::after {
     opacity: 0.3;
@@ -227,6 +229,7 @@ input[type=checkbox]:checked + label:after {
     box-shadow: 0px 12px 16px rgba(0, 0, 0, 0.1),
         0px 4px 6px rgba(0, 0, 0, 0.06);
     transition: right .3s;
+    z-index: 2;
 
 }
 
