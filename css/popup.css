@@ -117,7 +117,7 @@ input[type=checkbox]:checked + label:after {
     background-color: #27ae5f;
     border-radius: 5px;
     line-height: 36px;
-    cursor: copy;
+    cursor: pointer;
     color: #fff;
     text-align: center;
     box-shadow: 0px 12px 16px rgba(0, 0, 0, 0.1),
