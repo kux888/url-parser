@@ -16,7 +16,7 @@ Chrome 网上应用商店，搜索 [**URLParser**] 安装
 
 ## Contact
 
-如果有任何问题，或者希望添加功能，欢迎提 ISSUE 留言！！！
+如果有任何问题，或者希望添加功能，欢迎提 ISSUE 留言！！！！！
 
 ## License
 
